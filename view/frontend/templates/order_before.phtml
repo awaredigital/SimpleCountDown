@@ -1,0 +1,29 @@
+<?php
+    $status         = $block->getModuleStatus();
+    $endTime        = $block->getEndTime();
+    $displayText    = $block->getDisplayText();
+    $days           = $block->getDays();
+?>
+<?php if($status): ?>
+    <div class="order_before" data-bind="scope:'simple_countdown'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        
+    </div>
+    <script type="text/x-magento-init">
+            {
+                "*": {
+                    "Magento_Ui/js/core/app": {
+                    "components": {
+                            "simple_countdown":{
+                                "component": "Simple_Countdown/js/count_down",
+                                "template": "Simple_Countdown/timer",
+                                "endTime":<?= json_encode($endTime) ?>,
+                                "displayText": <?= json_encode($displayText); ?>,
+                                "days":<?= json_encode($days); ?>
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+<?php endif; ?>
